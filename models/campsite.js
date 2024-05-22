@@ -18,6 +18,20 @@ const commentSchema = new Schema({
     author: {
         type: String,
         required: true
+    }
+}, {
+    timestamps: true
+});
+
+const campsiteSchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    description: {
+        type: String,
+        required: true
     },
     image: {
         type: String,
@@ -35,25 +49,11 @@ const commentSchema = new Schema({
     featured: {
         type: Boolean,
         default: false
-    }
-}, {
-    timestamps: true
-});
-
-const campsiteSchema = new Schema({
-    name: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    description: {
-        type: String,
-        required: true
     },
     comments: [commentSchema]
-}, {
+    }, {
     timestamps: true
-});
+    });
 
 const Campsite = mongoose.model('Campsite', campsiteSchema);
 
