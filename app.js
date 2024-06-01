@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 const passport = require('passport');
+const session = require('express-session');
 const config = require('./config');
 
 var indexRouter = require('./routes/index');
@@ -33,6 +34,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use(session({
+	secret: config.secretKey,
+	resave: false,
+	saveUninitialized: false,
+	cookie: {maxAge: 1000}
+	}));
 app.use(passport.initialize());
 
 app.use('/', indexRouter);
