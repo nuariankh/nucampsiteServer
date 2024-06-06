@@ -32,7 +32,7 @@ router.post('/signup', cors.corsWithOptions, (req, res) => {
                 user.save(err => {
                     if (err) {
                         res.statusCode = 500;
-                        res.setHeader('Contentn-Type', 'application/json');
+                        res.setHeader('Content-Type', 'application/json');
                         res.json({err: err});
                         return;
                     }
